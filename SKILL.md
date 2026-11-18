@@ -1,12 +1,12 @@
 ---
 name: dba-topic-review
-description: Fiercely roast & refine DBA/PhD research topics, then generate rigorous questionnaires (Markdown + Google Apps Script).
-version: 1.0
+description: Fiercely roast & refine DBA/PhD research topics, then generate rigorous questionnaire content (Markdown).
+version: 1.1
 author: jutamaswon
 license: MIT
 metadata:
   hermes:
-    tags: [dba, phd, research-topic, questionnaire, google-form]
+    tags: [dba, phd, research-topic, questionnaire]
 ---
 
 ## When to Use
@@ -50,14 +50,13 @@ metadata:
 
 # PHASE 2: QUESTIONNAIRE GENERATION
 
-ออก 2 ส่วน: (1) Markdown (.md) ให้ผู้ทรงคุณวุฒิตรวจ (2) Google Apps Script สร้าง Google Form
+ออกไฟล์ Markdown (.md) ไฟล์เดียว ให้ผู้ทรงคุณวุฒิตรวจ — **เน้นเนื้อหาล้วนๆ ไม่ต้องสร้าง Google Form หรือ Apps Script**
 
 **ข้อจำกัด Phase 2:**
-1. ทุกตัวเลือกมีเลขนำหน้า ("1. ชาย", "2. หญิง")
+1. ทุกตัวเลือก multiple-choice และตาราง Likert ต้องมีตัวเลขนำหน้า ("1. ชาย", "2. หญิง")
 2. Part 1 prefix `a`: a1 เพศ เฉพาะ "1. ชาย"/"2. หญิง" • a2 อายุ Generations ตาม พ.ศ. 2569 — Gen Z (14-29 ปี / เกิด 2540-2555), Gen Y (30-45 / 2524-2539), Gen X (46-61 / 2508-2523), Baby Boomer (62+ / ก่อน 2508) • a3 สถานภาพการสมรส • a4 การศึกษา • a5–a10+ พฤติกรรมจำเพาะ (ความถี่/ยอดใช้จ่าย/วัตถุประสงค์/ผู้ตัดสินใจ/brand switching)
 3. Part 2 Likert 5 ระดับ: "1 - ไม่เห็นด้วยอย่างยิ่ง", "2 - ไม่เห็นด้วย", "3 - ปานกลาง", "4 - เห็นด้วย", "5 - เห็นด้วยอย่างยิ่ง"
 4. Markdown: blockquote "ทฤษฎีอ้างอิง" ทุกข้อ Part 2
-5. .gs สมบูรณ์: `FormApp.create`, `addMultipleChoiceItem()`, `addGridItem()`
 
 # การใช้งาน (Usage)
 
@@ -65,9 +64,9 @@ metadata:
 1. เปิดไฟล์ `SKILL.md` นี้ → copy เนื้อหาทั้งไฟล์
 2. ไปที่ ChatGPT / Claude / Gemini แล้ววางเป็นข้อความแรก (หรือใส่ใน Custom Instructions / System Prompt)
 3. พิมพ์ไอเดียหัวข้อระดับ ป.เอก → ได้ PHASE 1 (roast + ทฤษฎี + 4 ชื่อหัวข้อ)
-4. เลือกชื่อที่ชอบ แล้วพิมพ์ "สร้างแบบสอบถามจากข้อที่ 2" → ได้ PHASE 2 (ไฟล์ .md + โค้ด .gs)
+4. เลือกชื่อที่ชอบ แล้วพิมพ์ "สร้างแบบสอบถามจากข้อที่ 2" → ได้ PHASE 2 (ไฟล์ .md สำหรับให้ผู้ทรงคุณวุฒิตรวจ)
 
-**วิธีรัน Google Apps Script (สร้าง Google Form อัตโนมัติ):** ดูคู่มือใน `README.md`
+เมื่อผู้ทรงคุณวุฒิอนุมัติแล้ว นำ `questionnaire.md` ไปสร้าง Google Forms / กระดาษคำถาม ตามช่องทางของคุณเอง
 
 ## Gotchas
 
